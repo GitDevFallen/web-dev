@@ -1,0 +1,8 @@
+Napomene:
+1. Nisam koristio sive strelice koje sam dobio u assetima; s obzirom da je slider beskonačan pretpostavio sam da buttoni trebaju 
+uvijek biti aktivni iako u Sketchu je prikazan sivi (pretpostavljam neaktivni ili disable-ani) button
+
+2. Responzivnost slidera nisam uspio napraviti
+
+3. U zadatku piše kako skroz desna slika mora biti stalno aktivna, no previdio sam taj dio u zadatku te je meni aktivna slika 
+(u svakom redu posebno) ona koja je skroz lijevo i najbliže izlasku iz viewporta.
