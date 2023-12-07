@@ -1,114 +1,62 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="en">
 
 <head>
     <title>Slider</title>
-    <link href="./olulic.css" rel="stylesheet" type="text/css">
+    <link href="./styles/olulic.css" rel="stylesheet" type="text/css">
     <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="./olulic.js"></script>
 </head>
 
+<header>
+    <div class="boxSmall"></div>
+    <div class="boxBig">
+    </div>
+</header>
+
 <body>
-    <!-- Wrapper klasa prema uputama -->
+    <!-- Wrapper class -->
     <div class="wrapper">
-        <!-- Poseban div za svaki od redova u wrapperu -->
-        <div class="prvi">
-            <img class="slike1 current" src="./Assets/slider-image-1.jpg" alt="Slider Image 1">
-            <img class="slike1" src="./Assets/slider-image-3.jpg" alt="Slider Image 3">
-            <img class="slike1" src="./Assets/slider-image-5.jpg" alt="Slider Image 5">
-            <img class="slike1" src="./Assets/slider-image-7.jpg" alt="Slider Image 7">
+        <!-- Each row gets its individual div and class -->
+        <div class="firstRow">
+            <img class="firstRowPhotos current" src="./Assets/slider-image-1.jpg" alt="Slider Image 1">
+            <img class="firstRowPhotos" src="./Assets/slider-image-3.jpg" alt="Slider Image 3">
+            <img class="firstRowPhotos" src="./Assets/slider-image-5.jpg" alt="Slider Image 5">
+            <img class="firstRowPhotos" src="./Assets/slider-image-7.jpg" alt="Slider Image 7">
+            <img class="firstRowPhotos" src="./Assets/slider-image-8.jpg" alt="Slider Image 8.1">
+            <img class="firstRowPhotos" src="./Assets/slider-image-3.jpg" alt="Slider Image 3.1">
         </div>
-        <!-- Drugi red u wrapperu -->
-        <div class="drugi">
-            <img class="slike2 current" src="./Assets/slider-image-2.jpg" alt="Slider Image 2">
-            <img class="slike2" src="./Assets/slider-image-4.jpg" alt="Slider Image 4">
-            <img class="slike2" src="./Assets/slider-image-6.jpg" alt="Slider Image 6">
-            <img class="slike2" src="./Assets/slider-image-8.jpg" alt="Slider Image 8">
-            <img class="slike2" src="./Assets/slider-image-9.jpg" alt="Slider Image 9">
+        <!-- Second row in the wrapper -->
+        <div class="secondRow">
+            <img class="secondRowPhotos current" src="./Assets/slider-image-2.jpg" alt="Slider Image 2">
+            <img class="secondRowPhotos" src="./Assets/slider-image-4.jpg" alt="Slider Image 4">
+            <img class="secondRowPhotos" src="./Assets/slider-image-6.jpg" alt="Slider Image 6">
+            <img class="secondRowPhotos" src="./Assets/slider-image-8.jpg" alt="Slider Image 8">
+            <img class="secondRowPhotos" src="./Assets/slider-image-9.jpg" alt="Slider Image 9">
+            <img class="secondRowPhotos" src="./Assets/slider-image-6.jpg" alt="Slider Image 6.2">
         </div>
-        <!-- Strelice za pomicanje slika -->
+        <!-- Arrow buttons for scrolling around the slider -->
         <div class="arrow">
-            <button id="desno"><img src="./Assets/arrow-blue-right.png"></button>
-            <button id="lijevo"><img src="./Assets/arrow-blue-left.png"></button>
+            <button id="right"><img src="./Assets/arrow-blue-right.png"></button>
+            <button id="left"><img src="./Assets/arrow-blue-left.png"></button>
+        </div>
+        <!-- Text section next to the slider -->
+        <div class="rightCopy">
+            <div class="LoremIpsum">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </div>
+            <div class="ProinCurus">
+                Proin cursus turpis risus, ut lacinia nunc placerat a. Nullam ultricies dui nibh, sit amet facilisis
+                ipsum dictum ut.
+                Mauris eleifend magna enim, ac dignissim risus elementum at.
+            </div>
         </div>
     </div>
-    <script>
-        var duljina1, duljina2;
-        var sveSlike1 = $('.prvi .slike1');
-        var sveSlike2 = $('.drugi .slike2');
-
-        $("#lijevo").on("click", function () {
-
-            //ANIMACIJA prvog reda
-
-            var trenutnaSlika1 = sveSlike1.filter('.current'),
-                sljedecaSlika1 = trenutnaSlika1.next();
-            var duljinaOkvira1 = parseInt($('.prvi').width());
-            duljina1 = parseFloat(trenutnaSlika1.width());
-            duljina1 += 9.25; //zbog margina slika povećavamo duljinu
-
-            $(".prvi .slike1").animate({ left: "-=" + duljina1 + "" }, 700);
-            trenutnaSlika1.animate({ left: "+=" + duljinaOkvira1 + "" }, 700);
-
-            if (!sljedecaSlika1.length)
-                sljedecaSlika1 = sveSlike1.first();
-            trenutnaSlika1.removeClass('current');
-            sljedecaSlika1.addClass('current');
-
-            //ANIMACIJA drugog reda
-
-            var trenutnaSlika2 = sveSlike2.filter('.current'),
-                sljedecaSlika2 = trenutnaSlika2.next();
-            var duljinaOkvira2 = parseInt($('.drugi').width());
-            duljina2 = parseInt(trenutnaSlika2.width());
-            duljina2 += 12; //povećavamo duljinu pomicanja zbog margina slike
-
-            $(".drugi .slike2").animate({ left: "-=" + duljina2 + "" }, 500);
-            trenutnaSlika2.animate({ left: "+=" + duljinaOkvira2 + "" }, 500);
-
-            if (!sljedecaSlika2.length)
-                sljedecaSlika2 = sveSlike2.first();
-            trenutnaSlika2.removeClass('current');
-            sljedecaSlika2.addClass('current');
-
-        });
-        $("#desno").on("click", function () {
-
-            //ANIMACIJA prvog reda
-
-            var trenutnaSlika1 = sveSlike1.filter('.current').prev(),
-                sljedecaSlika1 = trenutnaSlika1.prev();
-            if(!trenutnaSlika1.length){
-                trenutnaSlika1 = sveSlike1.last();
-                sljedecaSlika1 = trenutnaSlika1.prev();
-            }
-            sveSlike1.filter('.current').removeClass('current');
-            trenutnaSlika1.addClass('current');
-            var duljinaOkvira1 = parseInt($('.prvi').width());
-            duljina1 = parseInt(trenutnaSlika1.width());
-            duljina1 += 9.25;
-
-            $(".prvi .slike1").animate({ left: "+=" + duljina1 + "" }, 700);
-            trenutnaSlika1.animate({ left: "-=" + duljinaOkvira1 + "" }, 700);
-
-            //ANIMACIJA drugog reda
-
-            var trenutnaSlika2 = sveSlike2.filter('.current').prev(),
-                sljedecaSlika2 = trenutnaSlika2.prev();
-            if(!trenutnaSlika2.length){
-                trenutnaSlika2 = sveSlike2.last();
-                sljedecaSlika2 = trenutnaSlika2.prev();
-            }
-            sveSlike2.filter('.current').removeClass('current');
-            trenutnaSlika2.addClass('current');
-            var duljinaOkvira2 = parseInt($('.drugi').width());
-            duljina2 = parseInt(trenutnaSlika2.width());
-            duljina2 += 12;
-
-            $(".drugi .slike2").animate({ left: "+=" + duljina2 + "" }, 500);
-            trenutnaSlika2.animate({ left: "-=" + duljinaOkvira2 + "" }, 500);
-        });
-    </script>
 </body>
+
+<footer>
+    <div class="boxFooter"></div>
+</footer>
 
 </html>
